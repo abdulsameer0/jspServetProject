@@ -17,28 +17,17 @@ public class CaseTypeRepository {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	// Get All Employees
+	// Get All Employees where main_misc = 'M'
 	public List<CaseType> findAll() {
 		String sql = "SELECT * FROM judl.case_type where main_misc = 'M'";
-     return jdbcTemplate.query(sql, new RowMapper<CaseType>() {
-    	 
-    	 @Override
-    	 public CaseType mapRow(ResultSet rs, int rowNum) throws SQLException {
-    		 return new CaseType(
-    				 rs.getString("ctype"),
-    				 rs.getString("main_misc")
-    				 );
-    				 
-    	 }
-     });
+		return jdbcTemplate.query(sql, new RowMapper<CaseType>() {
+
+			@Override
+			public CaseType mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return new CaseType(rs.getString("ctype"));
+
+			}
+		});
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

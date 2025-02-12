@@ -2,31 +2,35 @@ package dhc.entity;
 
 public class CaseType {
 	
-	private String ctype;
-	private String main_misc;
+	private String id;
+	private String value;
 
-	public CaseType() {
+	
+	public CaseType(String ctype) {
+		this.id=ctype;
+		this.value=ctype;
+		
 	}
 
-	public CaseType(String ctype, String main_misc) {
-		this.ctype = ctype;
-		this.main_misc = main_misc;
+
+	public String getId() {
+		return id;
 	}
 
-	public String getCtype() {
-		return ctype;
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public void setCtype(String ctype) {
-		this.ctype = ctype;
+
+	public String getValue() {
+		return value;
 	}
 
-	public String getMain_misc() {
-		return main_misc;
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 
-	public void setMain_misc(String main_misc) {
-		this.main_misc = main_misc;
-	}
-
+	
 }

@@ -11,7 +11,7 @@ import dhc.entity.CaseType;
 import dhc.service.CaseTypeService;
 
 @RestController
-@RequestMapping("api/caseType")
+@RequestMapping("/api/caseType")
 public class CaseTypeController {
 
 	
