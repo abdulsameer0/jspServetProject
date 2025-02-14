@@ -52,4 +52,8 @@ public class MasterService {
 	public List<AllJudges> getAllJudges() {
 		return masterRepository.getAllJudges();
 	}
+	
+	public List<String> getJudgeName(){
+		return masterRepository.getJudgeName();
+	}
 }

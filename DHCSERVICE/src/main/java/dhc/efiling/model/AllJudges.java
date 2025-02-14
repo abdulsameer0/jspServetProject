@@ -11,6 +11,11 @@ public class AllJudges {
 		this.judge_name = judge_name;
 	}
 
+	public AllJudges(String judge_prefix, String judge_name) {
+		this.judge_prefix = judge_prefix;
+		this.judge_name = judge_name;
+	}
+
 	public String getJudge_code() {
 		return judge_code;
 	}

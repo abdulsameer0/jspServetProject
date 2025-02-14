@@ -66,5 +66,10 @@ public class MasterController {
 	public List<AllJudges> getAllJudges() {
 		return masterService.getAllJudges();
 	}
+	
+	@GetMapping("/getJudgeName")
+	public List<String> getJudgeName(){
+		return masterService.getJudgeName();
+	}
 
 }

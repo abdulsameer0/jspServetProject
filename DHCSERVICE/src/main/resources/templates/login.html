@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="icon" href="/assets/img/e.png" type="image/x-icon">
+  
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-9ndCyUaG5V7P6RIsyZrR7MU3eLEk50wvyF4H9+5V+lw5yBT3L/s4Tqf5jTFjD9/C" 
+        crossorigin="anonymous">
+  
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  
+  <!-- SweetAlert2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <style>
+    body {
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .login-container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .position-relative {
+      position: relative;
+    }
+    .toggle-password {
+      cursor: pointer;
+      position: absolute;
+      right: 10px;
+      top: 38px;
+      font-size: 1.2rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1 class="text-center">Login Page</h1>
+    
+    <!-- Login Form -->
+    <form th:action="@{/LogonSubmit}" method="post">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input type="text" class="form-control" id="username" name="username" maxlength="10" required>
+      </div>
+      <div class="mb-3 position-relative">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" class="form-control" id="password" name="password" maxlength="50" required>
+        <span class="toggle-password" onclick="togglePassword()">
+          <i class="bi bi-eye"></i>
+        </span>
+      </div>
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary w-100">Log In</button>
+      </div>
+    </form>
+  </div>
+  
+  <!-- Bootstrap Bundle JS (includes Popper) CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" 
+          integrity="sha384-ENjdO4Dr2bkBIFxQpeo5bY6RPdPpFa79+F1V6nD+3N6o03PpXZ5n3l/+U8mJTrgf" 
+          crossorigin="anonymous"></script>
+  
+  <script>
+    function togglePassword() {
+      var passwordField = document.getElementById("password");
+      var toggleIcon = document.querySelector(".toggle-password i");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleIcon.classList.remove("bi-eye");
+        toggleIcon.classList.add("bi-eye-slash");
+      } else {
+        passwordField.type = "password";
+        toggleIcon.classList.remove("bi-eye-slash");
+        toggleIcon.classList.add("bi-eye");
+      }
+    }
+  </script>
+  
+  <!-- SweetAlert2 Error Message Display if error attribute is set -->
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    var errorMessage = /*[[${error}]]*/ '';
+    if (errorMessage !== null && errorMessage.trim().length > 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Error',
+        text: errorMessage
+      });
+    }
+    /*]]>*/
+  </script>
+</body>
+</html>

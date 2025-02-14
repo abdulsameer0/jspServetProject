@@ -1,6 +1,5 @@
 package dhc.efiling.repository;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,6 +92,17 @@ public class MasterRepository {
 	public List<AllJudges> getAllJudges() {
 		String sql = "select judge_code, judge_prefix, judge_name from judl.judge where judge_code is not null and judge_code>0";
 		return jdbcTemplate.query(sql, allJudgesRowMapper);
+	}
+
+	// RowMapper to map each row to a String with "HMJ " + judge_name
+	public final RowMapper<String> judgeNameRowMapper = (rs, rowNum) ->"HMJ " +(rs.getString("judge_name"));
+
+    // Function to get judge names with specified conditions
+	public List<String> getJudgeName() {
+		String sql = "SELECT judge_prefix, judge_name " + "FROM judl.judge " + "WHERE judge_code IS NOT NULL "
+				+ "  AND judge_code > 0 " + "  AND judge_prefix LIKE '%JUSTICE%' " + "  AND sitting_retired = 'S' "
+				+ "ORDER BY sitting_retired DESC, seniority";
+		return jdbcTemplate.query(sql, judgeNameRowMapper);
 	}
 
 }
